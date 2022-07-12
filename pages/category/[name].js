@@ -9,11 +9,11 @@ const Category = (props) => {
   const { inventory, title } = props
   return (
     <>
-      <CartLink />
+      {/* <CartLink /> */}
       <Head>
-        <title>Jamstack ECommerce - {title}</title>
-        <meta name="description" content={`Jamstack ECommerce - ${title}`} />
-        <meta property="og:title" content={`Jamstack ECommerce - ${title}`} key="title" />
+        <title>Baufixit - {title}</title>
+        <meta name="description" content={`Baufixit - ${title}`} />
+        <meta property="og:title" content={`Baufixit - ${title}`} key="title" />
       </Head>
       <div className="flex flex-col items-center">
         <div className="max-w-fw flex flex-col w-full">
@@ -30,7 +30,7 @@ const Category = (props) => {
                       key={index}
                       link={`/product/${slugify(item.name)}`}
                       title={item.name}
-                      price={item.price}
+                      brand={item.brand}
                       imageSrc={item.image}
                     />
                   )

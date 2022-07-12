@@ -11,7 +11,8 @@ function Ecommerce({ Component, pageProps, categories }) {
 }
 
 Ecommerce.getInitialProps = async () => {
-  const categories = await fetchCategories()
+  // const categories = await fetchCategories()
+  const categories = ['all products']
   return {
     categories
   }

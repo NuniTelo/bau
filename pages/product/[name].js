@@ -1,17 +1,14 @@
 import { useState } from 'react'
 import Head from 'next/head'
-import Button from '../../components/Button'
 import Image from '../../components/Image'
-import QuantityPicker from '../../components/QuantityPicker'
 import { fetchInventory } from '../../utils/inventoryProvider'
 import { slugify } from '../../utils/helpers'
-import CartLink from '../../components/CartLink'
 import { SiteContext, ContextProviderComponent } from '../../context/mainContext'
 
 const ItemView = (props) => {
   const [numberOfitems, updateNumberOfItems] = useState(1)
   const { product } = props
-  const { price, image, name, description } = product
+  const { price, image, name, description, subtitle, packaging, consumption, colors, classified } = product
   const { context: { addToCart }} = props
 
   function addItemToCart (product) {
@@ -30,11 +27,11 @@ const ItemView = (props) => {
 
   return (
     <>
-      <CartLink />
+      {/* <CartLink /> */}
       <Head>
-        <title>Jamstack ECommerce - {name}</title>
+        <title>Baufixit - {name}</title>
         <meta name="description" content={description} />
-        <meta property="og:title" content={`Jamstack ECommerce - ${name}`} key="title" />
+        <meta property="og:title" content={`Baufixit - ${name}`} key="title" />
       </Head>
       <div className="
         sm:py-12
@@ -42,30 +39,78 @@ const ItemView = (props) => {
         py-4 w-full flex flex-1 flex-col my-0 mx-auto
       ">
         <div className="w-full md:w-1/2 h-120 flex flex-1 bg-light hover:bg-light-200">
-          <div className="py-16 p10 flex flex-1 justify-center items-center">
+          <div className="py-4 p10 flex flex-1 justify-center items-center">
             <Image src={image} alt="Inventory item" className="max-h-full" />
           </div>
         </div>
         <div className="pt-2 px-0 md:px-10 pb-8 w-full md:w-1/2">
           <h1 className="
-           sm:mt-0 mt-2 text-5xl font-light leading-large
+           sm:mt-0 mt-2 text-5xl font-light leading-large font-semibold
           ">{name}</h1>
-          <h2 className="text-2xl tracking-wide sm:py-8 py-6">${price}</h2>
+          <h2 className="text-2xl tracking-wide sm:py-8 py-6">{subtitle}</h2>
           <p className="text-gray-600 leading-7">{description}</p>
           <div className="my-6">
-            <QuantityPicker
-              increment={increment}
-              decrement={decrement}
-              numberOfitems={numberOfitems}
-            />
+          
           </div>
-          <Button
-            full
-            title="Add to Cart"
-            onClick={() => addItemToCart(product)}
-          />
         </div>
       </div>
+
+    <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <table className="w-full text-sm text-center text-gray-500 dark:text-gray-400">
+        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" className="px-6 py-3">
+                    Other Information
+                </th>
+                <th scope="col" className="px-6 py-3">
+                    Description
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <th scope="row" className="px-6 py-4 font-medium text-gray-600 dark:text-white whitespace-nowrap">
+                    Classified
+                </th>
+                <td className="px-6 py-4">
+                    {classified}
+                </td>  
+            </tr>
+            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <th scope="row" className="px-6 py-4 font-medium text-gray-600 dark:text-white whitespace-nowrap">
+                  Packaging
+                </th>
+                <td className="px-6 py-4">
+                    {packaging}
+                </td>    
+            </tr>
+            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <th scope="row" className="px-6 py-4 font-medium text-gray-600 dark:text-white whitespace-nowrap">
+                Consumption
+                </th>
+                <td className="px-6 py-4">
+                    {consumption}
+                </td>
+            </tr>
+            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <th scope="row" className="px-6 py-4 font-medium text-gray-600 dark:text-white whitespace-nowrap">
+                Colors
+                </th>
+                <td className="px-6 py-4">
+                  {colors}
+                </td>
+            </tr>
+            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <th scope="row" className="px-6 py-4 font-medium text-gray-600 dark:text-white whitespace-nowrap">
+                Technical Information
+                </th>
+                <td className="px-6 py-4">
+                  link for technical information
+                </td>
+            </tr>                  
+        </tbody>
+    </table>
+</div>
     </>
   )
 }

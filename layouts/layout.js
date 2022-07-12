@@ -6,7 +6,12 @@ import { navItemLength } from '../ecommerce.config'
 
 export default function Layout({ children, categories }) {
   if (categories.length > navItemLength) {
+    let categoryToRemove = 'decorative microcement and acrylic ready mixed coatings'
+    categories = categories.filter(
+      item => item !== categoryToRemove
+  );
     categories = categories.slice(0, navItemLength)
+   
   }
   return (
     <div>
@@ -19,7 +24,7 @@ export default function Layout({ children, categories }) {
             <div className="mb-4 sm:mr-16 max-w-48 sm:max-w-none">
               <Link href="/">
                 <a aria-label="Home">
-                  <img src="/logo.png" alt="logo" width="90" height="28" />
+                  <img src="/logo.png" alt="logo" width="120" height="28" />
                 </a>
               </Link>
             </div>
@@ -27,10 +32,20 @@ export default function Layout({ children, categories }) {
               <Link href="/">
                 <a aria-label="Home">
                   <p className="
-                    sm:mr-8 sm:mb-0
-                    mb-4 text-left text-smaller mr-4
+                    sm:mr-12 sm:mb-0
+                    mb-6 text-left text-2xl mr-3 mt-4 font-semibold
                   ">
                   Home
+                  </p>
+                </a>
+              </Link>
+              <Link href="/categories">
+                <a aria-label="All categories">
+                  <p className="
+                    sm:mr-12 sm:mb-0 
+                    mb-4 text-left text-2xl mr-4 mt-4 font-semibold
+                  ">
+                  Categories
                   </p>
                 </a>
               </Link>
@@ -42,8 +57,8 @@ export default function Layout({ children, categories }) {
                   >
                     <a aria-label={category}>
                       <p className="
-                          sm:mr-8 sm:mb-0
-                          mb-4 text-left text-smaller mr-4
+                          sm:mr-12 sm:mb-0 s
+                          mb-4 text-left text-2xl mr-4 mt-4 font-semibold
                         ">
                         {category.charAt(0).toUpperCase() + category.slice(1)}
                       </p>
@@ -51,13 +66,23 @@ export default function Layout({ children, categories }) {
                   </Link>
                 ))
               }
-              <Link href="/categories">
-                <a aria-label="All categories">
+               <Link href="/contact-us">
+                <a aria-label="Contact Us">
                   <p className="
-                    sm:mr-8 sm:mb-0
-                    mb-4 text-left text-smaller mr-4 
+                    sm:mr-12 sm:mb-0
+                    mb-4 text-left text-2xl mr-4 mt-4 font-semibold
                   ">
-                  All
+                  Contact
+                  </p>
+                </a>
+              </Link>
+              <Link href="/about-us">
+                <a aria-label="About Us">
+                  <p className="
+                    sm:mr-12 sm:mb-0
+                    mb-4 text-left text-2xl mr-4 mt-4 font-semibold
+                  ">
+                  About
                   </p>
                 </a>
               </Link>
@@ -76,16 +101,14 @@ export default function Layout({ children, categories }) {
         desktop:px-0
         border-solid
         border-t border-gray-300">
-          <span className="block text-gray-700 text-xs">Copyright © 2021 JAMstack Ecommerce. All rights reserved.</span>
+          <span className="block text-gray-700 text-xs">Copyright © 2022 Baufixit. &nbsp;</span>
+          <a href="https://www.instagram.com/baufixit"> 
+            <img width="18" height="18" src="https://cdn.icon-icons.com/icons2/2066/PNG/512/instagram_icon_125245.png" ></img>
+          </a>
           <div className="
             sm:justify-end sm:m-0
             flex flex-1 mt-4
           ">
-            <Link href="/admin">
-              <a aria-label="Admin panel">
-              <p className="text-sm font-semibold">Admins</p>
-              </a>
-            </Link>
           </div>
         </div>
       </footer>

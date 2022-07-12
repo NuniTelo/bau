@@ -176,6 +176,9 @@ module.exports = {
         'large': '54px'
        }
     },
+    backgroundImage: {
+      'back-g': "url('https://i.imgur.com/tgX3zF1.jpg')",
+    },
   },
   plugins: [],
 }

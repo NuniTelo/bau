@@ -1,24 +1,21 @@
 import Head from 'next/head'
-import { Center, Footer, Tag, Showcase, DisplaySmall, DisplayMedium } from '../components'
+import { Center, Tag, DisplaySmall, DisplayMedium } from '../components'
 import { titleIfy, slugify } from '../utils/helpers'
 import { fetchInventory } from '../utils/inventoryProvider'
-import CartLink from '../components/CartLink'
 
 const Home = ({ inventoryData = [], categories: categoryData = [] }) => {
-  const inventory = inventoryData.slice(0, 4)
+  const inventory = inventoryData.slice(0, 15)
   const categories = categoryData.slice(0, 2)
 
   return (
     <>
-      <CartLink />
       <div className="w-full">
         <Head>
-          <title>Jamstack ECommerce</title>
-          <meta name="description" content="Jamstack ECommerce Next provides a way to quickly get up and running with a fully configurable ECommerce site using Next.js." />
-          <meta property="og:title" content="Jamstack ECommerce" key="title" />
+          <title>Baufixit</title>
+          <meta property="og:title" content="Baufixit" key="title" />
         </Head>
         <div className="bg-blue-300
-        p-6 pb-10 smpb-6
+        p-6 pb-20 smpb-6
         flex lg:flex-row flex-col">
           <div className="pt-4 pl-2 sm:pt-12 sm:pl-12 flex flex-col">
             <Tag
@@ -27,20 +24,9 @@ const Home = ({ inventoryData = [], categories: categoryData = [] }) => {
             />
             <Center
               price="200"
-              title={inventory[2].name}
-              link={`/product/${slugify(inventory[2].name)}`}
+              title={ `Baufixit - Material Construction Company`}
+              link={`https://dl.dropboxusercontent.com/s/rrgbtpld517yaxv/Katalogu%20OK%20pdf%20%282%29.pdf?dl=0`}
             />
-            <Footer
-              designer="Jason Bourne"
-            />
-          </div>
-          <div className="flex flex-1 justify-center items-center relative">
-              <Showcase
-                imageSrc={inventory[2].image}
-              />
-              <div className="absolute
-              w-48 h-48 sm:w-72 sm:h-72 xl:w-88 xl:h-88
-              bg-white z-0 rounded-full" />
           </div>
         </div>
       </div>
@@ -51,29 +37,22 @@ const Home = ({ inventoryData = [], categories: categoryData = [] }) => {
       ">
         <DisplayMedium
           imageSrc={categories[0].image}
-          subtitle={`${categories[0].itemCount} items`}
+          // subtitle={`${categories[0].itemCount} items`}
           title={titleIfy(categories[0].name)}
           link={`/category/${slugify(categories[0].name)}`}
         />
         <DisplayMedium
-          imageSrc={categories[1].image}
-          subtitle={`${categories[1].itemCount} items`}
-          title={titleIfy(categories[1].name)}
-          link={`/category/${slugify(categories[1].name)}`}
+          imageSrc={categories[0].image}
+          // subtitle={`5 items`}
+          title={titleIfy('best selling')}
+          link={`/category/best-selling`}
         />
       </div>
       <div className="pt-10 pb-6 flex flex-col items-center">
         <h2 className="text-4xl mb-3">Trending Now</h2>
-        <p className="text-gray-600 text-sm">Find the perfect piece or accessory to finish off your favorite room in the house.</p>
+        <p className="text-gray-600 text-sm">Those are our best trending products. Click on them to learn more!</p>
       </div>
       <div className="my-8 flex flex-col lg:flex-row justify-between">
-        <DisplaySmall
-          imageSrc={inventory[0].image}
-          title={inventory[0].name}
-          subtitle={inventory[0].categories[0]}
-          link={`/product/${slugify(inventory[0].name)}`}
-        />
-
         <DisplaySmall
           imageSrc={inventory[1].image}
           title={inventory[1].name}
@@ -82,17 +61,24 @@ const Home = ({ inventoryData = [], categories: categoryData = [] }) => {
         />
 
         <DisplaySmall
-          imageSrc={inventory[2].image}
-          title={inventory[2].name}
-          subtitle={inventory[2].categories[0]}
-          link={`/product/${slugify(inventory[2].name)}`}
+          imageSrc={inventory[4].image}
+          title={inventory[4].name}
+          // subtitle={inventory[4].categories[0]}
+          link={`/product/${slugify(inventory[4].name)}`}
         />
 
         <DisplaySmall
-          imageSrc={inventory[3].image}
-          title={inventory[3].name}
-          subtitle={inventory[3].categories[0]}
-          link={`/product/${slugify(inventory[3].name)}`}
+          imageSrc={inventory[8].image}
+          title={inventory[8].name}
+          subtitle={inventory[8].categories[0]}
+          link={`/product/${slugify(inventory[8].name)}`}
+        />
+
+        <DisplaySmall
+          imageSrc={inventory[5].image}
+          title={inventory[5].name}
+          subtitle={inventory[5].categories[0]}
+          link={`/product/${slugify(inventory[5].name)}`}
         />
       </div>
     </>
